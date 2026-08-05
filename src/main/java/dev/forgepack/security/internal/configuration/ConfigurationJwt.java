@@ -1,6 +1,6 @@
 package dev.forgepack.security.internal.configuration;
 
-import dev.forgepack.library.internal.configuration.filter.PropertiesJwt;
+import dev.forgepack.security.internal.configuration.filter.PropertiesJwt;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
