@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.forgepack</groupId>
-	<artifactId>forgepack-ARTIFACT</artifactId>
+	<artifactId>forgepack-security</artifactId>
 	<version>0.0.1</version>
-	<name>Maven Library</name>
-	<description>Project for Spring Boot library</description>
-	<url>https://github.com/orgs/forgepack/forgepack-ARTIFACT</url>
+	<name>Maven Library - Security</name>
+	<description>Project for Spring Boot library by security</description>
+	<url>https://github.com/orgs/forgepack/forgepack-security</url>
 	<licenses>
 		<license>
 			<name>MIT License</name>
@@ -33,14 +33,16 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:git://github.com/forgepack/forgepack-ARTIFACT.git</connection>
-		<developerConnection>scm:git:ssh://github.com:forgepack/forgepack-ARTIFACT.git</developerConnection>
-		<url>https://github.com/forgepack/forgepack-ARTIFACT</url>
+		<connection>scm:git:git://github.com/forgepack/forgepack-security.git</connection>
+		<developerConnection>scm:git:ssh://github.com:forgepack/forgepack-security.git</developerConnection>
+		<url>https://github.com/forgepack/forgepack-security</url>
 		<tag/>
 	</scm>
 	<properties>
 		<java.version>25</java.version>
 		<jacoco.version>0.8.15</jacoco.version>
+		<jjwt.version>0.13.0</jjwt.version>
+		<bucket4j.version>8.19.0</bucket4j.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,6 +60,54 @@
 			<groupId>org.codehaus.plexus</groupId>
 			<artifactId>plexus-utils</artifactId>
 			<version>4.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--  ===== DOCUMENTATION =====  -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<!-- Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- ===== RATE LIMITING ===== -->
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+			<version>${caffeine.version}</version>
+		</dependency>
+		<!-- ===== CACHING ===== -->
+		<dependency>
+			<groupId>com.bucket4j</groupId>
+			<artifactId>bucket4j_jdk17-core</artifactId>
+			<version>${bucket4j.version}</version>
 		</dependency>
 	</dependencies>
 
