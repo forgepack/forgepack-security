@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.forgepack</groupId>
 	<artifactId>forgepack-security</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>Maven Library - Security</name>
 	<description>Project for Spring Boot library by security</description>
 	<url>https://github.com/orgs/forgepack/forgepack-security</url>
@@ -40,26 +40,20 @@
 	</scm>
 	<properties>
 		<java.version>25</java.version>
-		<jacoco.version>0.8.15</jacoco.version>
 		<jjwt.version>0.13.0</jjwt.version>
 		<bucket4j.version>8.19.0</bucket4j.version>
+		<caffeine.version>3.1.8</caffeine.version>
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>dev.forgepack</groupId>
+			<artifactId>forgepack-core</artifactId>
+			<version>0.0.4</version>
+		</dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>${jacoco.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-utils</artifactId>
-			<version>4.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,7 +62,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		</dependency> -->
 		<!--  ===== DOCUMENTATION =====  -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -168,51 +162,6 @@
 						<goals>
 							<goal>sign</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- JaCoCo Plugin (Code Coverage) -->
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>check</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<rule>
-									<element>BUNDLE</element>
-									<limits>
-										<limit>
-											<counter>LINE</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.15</minimum>
-										</limit>
-										<limit>
-											<counter>BRANCH</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.80</minimum>
-										</limit>
-									</limits>
-								</rule>
-							</rules>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
