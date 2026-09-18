@@ -1,4 +1,4 @@
-package dev.forgepack.library.internal.configuration;
+package dev.forgepack.security.internal.configuration;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
