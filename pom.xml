@@ -52,7 +52,7 @@
 			<version>0.0.23</version>
 		</dependency>
 		<!-- Security: jwt -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -72,7 +72,7 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>${jjwt.version}</version>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
 		<!-- Rate Limiting -->
 		<dependency>
 			<groupId>com.github.ben-manes.caffeine</groupId>
