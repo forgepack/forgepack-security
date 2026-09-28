@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev.forgepack</groupId>
 	<artifactId>forgepack-security</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<name>Forgepack Security Library</name>
 	<description>The entire HTTP security infrastructure: JWT, rate limiting, security headers, CORS, and the SecurityFilterChain.</description>
 	<url>https://github.com/orgs/forgepack/forgepack-security</url>
@@ -45,12 +45,6 @@
 		<caffeine.version>3.1.8</caffeine.version>
 	</properties>
 	<dependencies>
-		<!-- Forgepack: basic -->
-		<dependency>
-			<groupId>dev.forgepack</groupId>
-			<artifactId>forgepack-core</artifactId>
-			<version>0.0.23</version>
-		</dependency>
 		<!-- Forgepack: authentication -->
 		<dependency>
 			<groupId>dev.forgepack</groupId>
