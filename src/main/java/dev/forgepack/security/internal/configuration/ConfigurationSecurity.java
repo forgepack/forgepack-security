@@ -1,6 +1,7 @@
 package dev.forgepack.security.internal.configuration;
 
-import dev.forgepack.security.internal.configuration.filter.FilterJwt;
+import dev.forgepack.authentication.internal.configuration.JwtConfiguration;
+import dev.forgepack.authentication.internal.configuration.filter.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,15 +31,15 @@ import java.util.List;
  *     <li>Public endpoints driven by {@link PropertiesSecurityEndpoints} — configurable via
  *         {@code forgepack.security.endpoints.*} properties</li>
  *     <li>All other requests require authentication</li>
- *     <li>{@link FilterJwt} inserted before {@link UsernamePasswordAuthenticationFilter}</li>
+ *     <li>{@link JwtFilter} inserted before {@link UsernamePasswordAuthenticationFilter}</li>
  *     <li>Role prefix removed via {@link GrantedAuthorityDefaults}</li>
  * </ul>
  *
  * @author Marcelo Ribeiro Gadelha
  * @since 1.0
  *
- * @see FilterJwt
- * @see ConfigurationJwt
+ * @see JwtFilter
+ * @see JwtConfiguration
  */
 @Configuration
 @EnableWebSecurity
@@ -52,10 +53,10 @@ public class ConfigurationSecurity {
     private static final List<String> BUILT_IN_PERMIT_POST = List.of("/auth/login", "/user/**");
     private static final List<String> BUILT_IN_PERMIT_PUT  = List.of("/auth/resetPassword");
 
-    private final FilterJwt filterJwt;
+    private final JwtFilter filterJwt;
     private final PropertiesSecurityEndpoints endpointProps;
 
-    public ConfigurationSecurity(FilterJwt filterJwt, PropertiesSecurityEndpoints endpointProps) {
+    public ConfigurationSecurity(JwtFilter filterJwt, PropertiesSecurityEndpoints endpointProps) {
         this.filterJwt      = filterJwt;
         this.endpointProps  = endpointProps;
     }

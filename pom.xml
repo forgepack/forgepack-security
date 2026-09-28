@@ -51,6 +51,12 @@
 			<artifactId>forgepack-core</artifactId>
 			<version>0.0.23</version>
 		</dependency>
+		<!-- Forgepack: authentication -->
+		<dependency>
+			<groupId>dev.forgepack</groupId>
+			<artifactId>forgepack-authentication</artifactId>
+			<version>0.0.3</version>
+		</dependency>
 		<!-- Security: jwt -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
