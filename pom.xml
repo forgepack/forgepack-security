@@ -40,44 +40,14 @@
 	</scm>
 	<properties>
 		<java.version>25</java.version>
-		<jjwt.version>0.13.0</jjwt.version>
 		<bucket4j.version>8.19.0</bucket4j.version>
-		<caffeine.version>3.1.8</caffeine.version>
 	</properties>
 	<dependencies>
 		<!-- Forgepack: authentication -->
 		<dependency>
 			<groupId>dev.forgepack</groupId>
 			<artifactId>forgepack-authentication</artifactId>
-			<version>0.0.3</version>
-		</dependency>
-		<!-- Security: jwt -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>${jjwt.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>${jjwt.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>${jjwt.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<!-- Rate Limiting -->
-		<dependency>
-			<groupId>com.github.ben-manes.caffeine</groupId>
-			<artifactId>caffeine</artifactId>
-			<version>${caffeine.version}</version>
+			<version>0.0.4</version>
 		</dependency>
 		<!-- Caching -->
 		<dependency>
