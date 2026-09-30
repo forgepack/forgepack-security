@@ -80,18 +80,21 @@ Internal implementation details are encapsulated in `dev.forgepack.security.inte
 
 ### 4.1. Current Coverage Metrics
 
-GENERAL COVERAGE: 0%
-TOTAL NUMBER OF TESTS: 0
+GENERAL LINE COVERAGE: 86.39%
+GENERAL BRANCH COVERAGE: 85.71%
+TOTAL NUMBER OF TESTS: 11
 
 | Package                                              | Coverage |        |
 |:-----------------------------------------------------|:--------:|:------:|
-| 📁 dev.forgepack.security.api                  |    0%    |   🔴   |
-| 📁 dev.forgepack.security.internal             |    0%    |   🔴   |
+| 📁 dev.forgepack.security.api                  |    N/A   |   -    |
+| 📁 dev.forgepack.security.internal             |  86.39% |   🟢   |
+
+The JaCoCo report is generated at `target/site/jacoco/index.html`. The Maven build enforces a minimum of 80% for line and branch coverage.
 
 ### 4.2. Types of Tests Implemented
-1. __Unit Tests__: Service and component layer
-2. __Integration Tests__: Spring context loading via `@SpringBootTest`
-3. __Auto-Configuration Tests__: `ApplicationContextRunner` scenarios
+1. __Unit Tests__: CORS configuration, security beans, rate limiting, and security headers
+2. __Filter Tests__: API, actuator, and web header policies; allowed, limited, and forwarded-client rate-limit requests
+3. __Configuration Tests__: CORS mappings, password encoding, authentication manager delegation, and endpoint pattern merging
 
 ### 4.3. Running Tests
 ```bash
