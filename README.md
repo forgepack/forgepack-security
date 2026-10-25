@@ -1,12 +1,12 @@
+<div align="center">
+
 # _forgepack-security_
+
 [![GitHub stars](https://img.shields.io/github/stars/forgepack/forgepack-security?style=social)](https://github.com/forgepack/forgepack-security)
 [![GitHub forks](https://img.shields.io/github/forks/forgepack/forgepack-security?style=social)](https://github.com/forgepack/forgepack-security/fork)
 [![GitHub watchers](https://img.shields.io/github/watchers/forgepack/forgepack-security?style=social)](https://github.com/forgepack/forgepack-security)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/forgepack/forgepack-security)
-![Maven Central](https://img.shields.io/maven-central/v/dev.forgepack/security)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Test Coverage](https://img.shields.io/badge/coverage-0%25-red)
+</div>
 
 ## Tech Stack
 ![Java](https://img.shields.io/badge/Java-25-orange?logo=openjdk)
@@ -14,6 +14,11 @@
 ![Maven](https://img.shields.io/badge/Maven-3.8+-blue?logo=apachemaven)
 
 ## Description
+![GitHub last commit](https://img.shields.io/github/last-commit/forgepack/forgepack-security)
+![Maven Central](https://img.shields.io/maven-central/v/dev.forgepack/security)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Test Coverage](https://img.shields.io/badge/coverage-0%25-red)
+
 
 _forgepack-security_ is a Spring Boot auto-configuration library that {DESCRIPTION}.
 
@@ -143,7 +148,7 @@ forgepack.security.property-name=default-value
 ## DEVELOPERS
 
 ### Contributors
-> _[Gadelha TI](https://github.com/gadelhati)_ - *Architect & Lead Developer*
+> _[Gadelha TI](https://github.com/gadelhati)_ - *Research Software Engineer · Software Architect · Lead Developer*
 
 ## LICENSE
 
@@ -173,7 +178,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-<div style="text-align: center;">
+<div align="center">
 
 __⭐ Did you like the project? Leave a star! ⭐__
 
