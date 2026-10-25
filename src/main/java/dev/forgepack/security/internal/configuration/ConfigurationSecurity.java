@@ -2,6 +2,7 @@ package dev.forgepack.security.internal.configuration;
 
 import dev.forgepack.authentication.internal.configuration.JwtConfiguration;
 import dev.forgepack.authentication.internal.configuration.filter.JwtFilter;
+import dev.forgepack.security.internal.configuration.filter.SecurityHeadersFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,7 +28,7 @@ import java.util.List;
  * <p>Configures a stateless, JWT-based security model with the following characteristics:</p>
  * <ul>
  *     <li>CSRF disabled (REST API with stateless sessions)</li>
- *     <li>Security headers delegated entirely to {@link dev.forgepack.security.internal.configuration.filter.FilterSecurityHeaders}</li>
+ *     <li>Security headers delegated entirely to {@link SecurityHeadersFilter}</li>
  *     <li>Public endpoints driven by {@link PropertiesSecurityEndpoints} — configurable via
  *         {@code forgepack.security.endpoints.*} properties</li>
  *     <li>All other requests require authentication</li>

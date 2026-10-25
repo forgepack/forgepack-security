@@ -12,11 +12,11 @@ import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class FilterSecurityHeadersTest {
+class SecurityHeadersFilterTest {
 
     @Test
     void appliesApiHeadersAndEnabledHsts() throws Exception {
-        FilterSecurityHeaders filter = new FilterSecurityHeaders(properties(true), Optional.of(buildProperties()));
+        SecurityHeadersFilter filter = new SecurityHeadersFilter(properties(true), Optional.of(buildProperties()));
         MockHttpServletResponse response = filterResponse("/api/orders", filter);
 
         assertThat(response.getHeader("X-API-Version")).isEqualTo("1.2.3");
@@ -29,7 +29,7 @@ class FilterSecurityHeadersTest {
 
     @Test
     void appliesActuatorPolicyWithoutHsts() throws Exception {
-        FilterSecurityHeaders filter = new FilterSecurityHeaders(properties(false), Optional.empty());
+        SecurityHeadersFilter filter = new SecurityHeadersFilter(properties(false), Optional.empty());
         MockHttpServletResponse response = filterResponse("/actuator/health", filter);
 
         assertThat(response.getHeader("X-API-Version")).isEqualTo("unknown");
@@ -40,7 +40,7 @@ class FilterSecurityHeadersTest {
 
     @Test
     void appliesWebPolicyWithRequestNonce() throws Exception {
-        FilterSecurityHeaders filter = new FilterSecurityHeaders(properties(false), Optional.empty());
+        SecurityHeadersFilter filter = new SecurityHeadersFilter(properties(false), Optional.empty());
         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
         MockHttpServletResponse response = new MockHttpServletResponse();
 
@@ -52,7 +52,7 @@ class FilterSecurityHeadersTest {
         assertThat(response.getHeader("Cache-Control")).isEqualTo("private");
     }
 
-    private static MockHttpServletResponse filterResponse(String uri, FilterSecurityHeaders filter) throws Exception {
+    private static MockHttpServletResponse filterResponse(String uri, SecurityHeadersFilter filter) throws Exception {
         MockHttpServletRequest request = new MockHttpServletRequest("GET", uri);
         MockHttpServletResponse response = new MockHttpServletResponse();
         filter.doFilter(request, response, new MockFilterChain());
@@ -65,14 +65,14 @@ class FilterSecurityHeadersTest {
         return new BuildProperties(properties);
     }
 
-    private static PropertiesSecurityHeaders properties(boolean hstsEnabled) {
-        return new PropertiesSecurityHeaders(
-                new PropertiesSecurityHeaders.Headers("nosniff", "DENY", "1", "strict-origin",
-                        new PropertiesSecurityHeaders.Headers.Hsts(hstsEnabled, 60, true)),
-                new PropertiesSecurityHeaders.Routes(List.of("/api/"), List.of("/actuator/")),
-                new PropertiesSecurityHeaders.Csp("default-src 'none'",
-                        new PropertiesSecurityHeaders.Csp.Api("'none'", "'none'", "'self'"),
-                        new PropertiesSecurityHeaders.Csp.Web("'self'", "'self'", "'self'", "'self'", "'self'", "'self'", "'none'")),
-                new PropertiesSecurityHeaders.Cache("no-store", "no-store", "private"));
+    private static SecurityHeadersProperties properties(boolean hstsEnabled) {
+        return new SecurityHeadersProperties(
+                new SecurityHeadersProperties.Headers("nosniff", "DENY", "1", "strict-origin",
+                        new SecurityHeadersProperties.Headers.Hsts(hstsEnabled, 60, true)),
+                new SecurityHeadersProperties.Routes(List.of("/api/"), List.of("/actuator/")),
+                new SecurityHeadersProperties.Csp("default-src 'none'",
+                        new SecurityHeadersProperties.Csp.Api("'none'", "'none'", "'self'"),
+                        new SecurityHeadersProperties.Csp.Web("'self'", "'self'", "'self'", "'self'", "'self'", "'self'", "'none'")),
+                new SecurityHeadersProperties.Cache("no-store", "no-store", "private"));
     }
 }

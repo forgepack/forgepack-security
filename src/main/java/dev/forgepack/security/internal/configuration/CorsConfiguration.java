@@ -2,7 +2,6 @@ package dev.forgepack.security.internal.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
@@ -10,17 +9,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  * Configures CORS (Cross-Origin Resource Sharing) for the application.
  *
  * <p>All parameters are configurable via {@code application.properties} under the
- * {@code forgepack.cors} prefix. See {@link PropertiesCors}.</p>
+ * {@code forgepack.cors} prefix. See {@link CorsProperties}.</p>
  *
  * @author Marcelo Ribeiro Gadelha
  * @since 1.0
  */
 @Configuration
-public class ConfigurationCors {
+public class CorsConfiguration {
 
-    private final PropertiesCors props;
+    private final CorsProperties props;
 
-    public ConfigurationCors(PropertiesCors props) {
+    public CorsConfiguration(CorsProperties props) {
         this.props = props;
     }
 
@@ -31,7 +30,7 @@ public class ConfigurationCors {
      */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
+        org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration();
         configuration.setAllowedOriginPatterns(props.allowedOrigins());
         configuration.setAllowedMethods(props.allowedMethods());
         configuration.setAllowedHeaders(props.allowedHeaders());

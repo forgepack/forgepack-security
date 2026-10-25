@@ -7,11 +7,11 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class FilterRateLimitingTest {
+class RateLimitFilterTest {
 
     @Test
     void permitsRequestsUntilTheBucketIsEmptyAndThenReturns429() throws Exception {
-        FilterRateLimiting filter = new FilterRateLimiting(new PropertiesRateLimit(2, 1, 1, 1, false));
+        RateLimitFilter filter = new RateLimitFilter(new RateLimitProperties(2, 1, 1, 1, false));
 
         MockHttpServletResponse first = filterResponse(filter, request("10.0.0.1"));
         MockHttpServletResponse second = filterResponse(filter, request("10.0.0.1"));
@@ -26,7 +26,7 @@ class FilterRateLimitingTest {
 
     @Test
     void usesForwardedClientAddressWhenConfigured() throws Exception {
-        FilterRateLimiting filter = new FilterRateLimiting(new PropertiesRateLimit(1, 1, 1, 1, true));
+        RateLimitFilter filter = new RateLimitFilter(new RateLimitProperties(1, 1, 1, 1, true));
         MockHttpServletRequest first = request("10.0.0.1");
         first.addHeader("X-Forwarded-For", "203.0.113.1, 10.0.0.1");
         MockHttpServletRequest second = request("10.0.0.1");
@@ -38,7 +38,7 @@ class FilterRateLimitingTest {
 
     @Test
     void fallsBackToRealIpAndRemoteAddressWhenForwardedIpIsUnavailable() throws Exception {
-        FilterRateLimiting filter = new FilterRateLimiting(new PropertiesRateLimit(1, 1, 1, 1, true));
+        RateLimitFilter filter = new RateLimitFilter(new RateLimitProperties(1, 1, 1, 1, true));
         MockHttpServletRequest realIpRequest = request("10.0.0.1");
         realIpRequest.addHeader("X-Forwarded-For", " ");
         realIpRequest.addHeader("X-Real-IP", "203.0.113.1");
@@ -50,7 +50,7 @@ class FilterRateLimitingTest {
 
     @Test
     void startsAndStopsTheCleanupScheduler() {
-        FilterRateLimiting filter = new FilterRateLimiting(new PropertiesRateLimit(1, 1, 1, 1, false));
+        RateLimitFilter filter = new RateLimitFilter(new RateLimitProperties(1, 1, 1, 1, false));
 
         filter.init();
         filter.destroy();
@@ -58,7 +58,7 @@ class FilterRateLimitingTest {
 
     @Test
     void safelyDestroysAnUninitializedFilter() {
-        new FilterRateLimiting(new PropertiesRateLimit()).destroy();
+        new RateLimitFilter(new RateLimitProperties()).destroy();
     }
 
     private static MockHttpServletRequest request(String remoteAddress) {
@@ -67,7 +67,7 @@ class FilterRateLimitingTest {
         return request;
     }
 
-    private static MockHttpServletResponse filterResponse(FilterRateLimiting filter, MockHttpServletRequest request) throws Exception {
+    private static MockHttpServletResponse filterResponse(RateLimitFilter filter, MockHttpServletRequest request) throws Exception {
         MockHttpServletResponse response = new MockHttpServletResponse();
         filter.doFilter(request, response, new MockFilterChain());
         return response;

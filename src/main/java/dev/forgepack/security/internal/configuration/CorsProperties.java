@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Validated
 @ConfigurationProperties(prefix = "forgepack.cors")
-public record PropertiesCors(
+public record CorsProperties(
         @NotEmpty @DefaultValue("http://localhost:5173")                                             List<String> allowedOrigins,
         @NotEmpty @DefaultValue({"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"})               List<String> allowedMethods,
         @NotEmpty @DefaultValue({"Authorization", "Content-Type", "Accept", "X-Requested-With"})   List<String> allowedHeaders,

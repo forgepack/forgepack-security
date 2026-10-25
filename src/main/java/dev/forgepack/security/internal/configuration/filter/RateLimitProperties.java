@@ -23,14 +23,14 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @ConfigurationProperties(prefix = "forgepack.rate-limit")
-public record PropertiesRateLimit(
+public record RateLimitProperties(
         @Min(1) int requestsPerMinute,
         @Min(1) int burstMultiplier,
         @Min(1) int cleanupIntervalMinutes,
         @Min(1) int cleanupThresholdMultiplier,
         boolean trustForwardedFor
 ) {
-    public PropertiesRateLimit() {
+    public RateLimitProperties() {
         this(100, 2, 15, 2, false);
     }
 }

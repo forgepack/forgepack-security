@@ -23,7 +23,7 @@ import java.util.List;
  * @since 1.0
  */
 @ConfigurationProperties(prefix = "forgepack.security")
-public record PropertiesSecurityHeaders(
+public record SecurityHeadersProperties(
         @DefaultValue Headers headers,
         @DefaultValue Routes  routes,
         @DefaultValue Csp     csp,

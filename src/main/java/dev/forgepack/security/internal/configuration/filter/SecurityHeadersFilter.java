@@ -19,20 +19,20 @@ import java.util.Optional;
  * on every request, routing to the appropriate policy based on the request URI.
  *
  * <p>All policies are configurable via {@code application.properties} under the
- * {@code forgepack.security.*} prefix. See {@link PropertiesSecurityHeaders}.</p>
+ * {@code forgepack.security.*} prefix. See {@link SecurityHeadersProperties}.</p>
  *
  * @author Marcelo Ribeiro Gadelha
  * @since 1.0
  */
 @Component
-public class FilterSecurityHeaders extends OncePerRequestFilter {
+public class SecurityHeadersFilter extends OncePerRequestFilter {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
-    private final PropertiesSecurityHeaders props;
+    private final SecurityHeadersProperties props;
     private final BuildProperties buildProperties;
 
-    public FilterSecurityHeaders(PropertiesSecurityHeaders props, Optional<BuildProperties> buildProperties) {
+    public SecurityHeadersFilter(SecurityHeadersProperties props, Optional<BuildProperties> buildProperties) {
         this.props = props;
         this.buildProperties = buildProperties.orElse(null);
     }
@@ -48,7 +48,7 @@ public class FilterSecurityHeaders extends OncePerRequestFilter {
     }
 
     private void applyBaseHeaders(HttpServletResponse response) {
-        PropertiesSecurityHeaders.Headers h = props.headers();
+        SecurityHeadersProperties.Headers h = props.headers();
         response.setHeader("X-Content-Type-Options", h.xContentTypeOptions());
         response.setHeader("X-Frame-Options",        h.xFrameOptions());
         response.setHeader("X-XSS-Protection",       h.xXssProtection());
@@ -57,7 +57,7 @@ public class FilterSecurityHeaders extends OncePerRequestFilter {
     }
 
     private void applyHsts(HttpServletResponse response) {
-        PropertiesSecurityHeaders.Headers.Hsts hsts = props.headers().hsts();
+        SecurityHeadersProperties.Headers.Hsts hsts = props.headers().hsts();
         if (!hsts.enabled()) return;
         String value = "max-age=" + hsts.maxAge() + (hsts.includeSubDomains() ? "; includeSubDomains" : "");
         response.setHeader("Strict-Transport-Security", value);
@@ -85,7 +85,7 @@ public class FilterSecurityHeaders extends OncePerRequestFilter {
     }
 
     private String buildApiCsp() {
-        PropertiesSecurityHeaders.Csp.Api api = props.csp().api();
+        SecurityHeadersProperties.Csp.Api api = props.csp().api();
         return String.join("; ",
                 "default-src "     + api.defaultSrc(),
                 "frame-ancestors " + api.frameAncestors(),
@@ -99,7 +99,7 @@ public class FilterSecurityHeaders extends OncePerRequestFilter {
     private String buildWebCsp(String nonce) {
         // 'unsafe-inline' is kept for pre-CSP3 browser compatibility.
         // Modern browsers ignore 'unsafe-inline' when a valid nonce is present.
-        PropertiesSecurityHeaders.Csp.Web web = props.csp().web();
+        SecurityHeadersProperties.Csp.Web web = props.csp().web();
         return String.join("; ",
                 "default-src "     + web.defaultSrc(),
                 "script-src "      + web.scriptSrc()  + " 'nonce-" + nonce + "' 'unsafe-inline'",

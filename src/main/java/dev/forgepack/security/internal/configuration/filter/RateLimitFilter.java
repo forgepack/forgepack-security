@@ -53,16 +53,16 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0
  */
 @Component
-public class FilterRateLimiting extends OncePerRequestFilter {
+public class RateLimitFilter extends OncePerRequestFilter {
 
-    private static final Logger       log           = LoggerFactory.getLogger(FilterRateLimiting.class);
+    private static final Logger       log           = LoggerFactory.getLogger(RateLimitFilter.class);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private final PropertiesRateLimit properties;
+    private final RateLimitProperties properties;
     private final ConcurrentMap<String, BucketEntry> cache = new ConcurrentHashMap<>();
     private ScheduledExecutorService scheduler;
 
-    public FilterRateLimiting(PropertiesRateLimit properties) {
+    public RateLimitFilter(RateLimitProperties properties) {
         this.properties = properties;
     }
 
