@@ -1,1 +1,2 @@
-dev.forgepack.library.internal.configuration.ConfigurationJPAAuto
+dev.forgepack.security.internal.configuration.ConfigurationSecurity
+dev.forgepack.security.internal.configuration.CorsConfiguration
